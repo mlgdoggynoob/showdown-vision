@@ -1,0 +1,20 @@
+seg /home/randy/nb68/train/runs/seg_v6/best.pt  frames 16969  mIoU 0.849 over 18 classes  (5.3 min)
+floor                0.948
+water                0.941
+slow_tile            0.912
+damage_tile          0.907
+ice                  0.906
+bush                 0.902
+fast_tile            0.882
+bouncer              0.874
+destructible_wall    0.871
+gravity              0.867
+ui                   0.855
+power_box            0.834
+indestructible       0.819
+destructible         0.819
+rope_fence           0.794
+out_of_bounds        0.771
+faded_bush           0.704
+poison               0.676
+fragile_wall         nan
