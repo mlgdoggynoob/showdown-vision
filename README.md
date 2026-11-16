@@ -41,3 +41,13 @@ on NVIDIA and AMD GPUs.
 ## Speed
 On an RX 7900 XT with DirectML: det about 10 ms, seg_argmax about 4 ms. Our whole live chain (grab + det + seg + our
 adapter) runs at 10 frames/s with p95 53 ms.
+
+## Validation set (same frames our numbers above come from)
+On the [v6 release](https://github.com/mlgdoggynoob/showdown-vision-v6/releases/tag/v6): `showdown-v6-val-part*.zip`
+and `showdown-v6-val_mk-part*.zip` (stored zips, ~6.9 GB in all). Unzip every part into one folder:
+- `images/val/*.png` (16,969 frames, 960 x 540) + `labels/val/*.txt` (YOLO boxes, the 29 classes above) +
+  `seg/val/*.png` (uint8 masks at 960 x 540, pixel = class id, names in `seg_names.txt`)
+- `images/val_mk` + `labels/val_mk` (1,800 frames with teammate markers drawn in, for class 28; no seg masks)
+
+Detector: `yolo val model=det.pt data=data.yaml imgsz=960` with `data.yaml` from this repo. Seg: mIoU over
+`seg/val`, using the input and output steps above.

@@ -1,0 +1,34 @@
+# Ultralytics data file for the v6 val split (unzip all val parts here)
+path: .
+val: [images/val, images/val_mk]
+nc: 29
+names:
+  0: player
+  1: teammate
+  2: enemy
+  3: teammate_summon
+  4: enemy_summon
+  5: power_box
+  6: boss
+  7: objective
+  8: teammate_projectile
+  9: enemy_projectile
+  10: teammate_area_effect
+  11: enemy_area_effect
+  12: gem
+  13: power_cube
+  14: item
+  15: player_health
+  16: teammate_health
+  17: enemy_health
+  18: player_ammo
+  19: destructible
+  20: movement_joystick
+  21: attack_joystick
+  22: super_ready
+  23: super_empty
+  24: gadget_ready
+  25: gadget_empty
+  26: hypercharge_ready
+  27: hypercharge_empty
+  28: teammate_marker
