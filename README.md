@@ -1,10 +1,23 @@
-# Showdown vision v6 (det + seg)
+# Showdown vision
 
-Two models that read a landscape 16:9 game frame resized to **960 x 540**. They were trained on frames rendered by libg 68
-under qemu (offline battle server), with labels from the game's own state. Both run on onnxruntime-directml, so they work
-on NVIDIA and AMD GPUs.
+Vision models for Brawl Stars Showdown: an entity detector and a tile / wall segmentation model that read a landscape
+16:9 game frame. Each version of the models is a GitHub release with its own tag, model files and validation numbers.
+The training data comes from frames rendered by the game build under qemu (offline battle server), with labels from
+the game's own state.
 
-**Model files are in the [v6 release](https://github.com/mlgdoggynoob/showdown-vision-v6/releases/tag/v6)** (too big for the repo itself).
+## Versions
+
+| version | release | detector | segmentation | notes |
+| --- | --- | --- | --- | --- |
+| v6 (current) | [v6](https://github.com/mlgdoggynoob/showdown-vision/releases/tag/v6) | YOLO26s, 29 classes, 960 x 544 | MobileNetV3-L FPN, 19 classes, 480 x 288 | details below |
+
+Model files are on each version's release (too big for the repo itself). The files in this repo (`data.yaml`,
+`seg_names.txt`, `seg_iou.txt`, `reference_inference_live_run.py`) describe the current version.
+
+# v6
+
+Both models read the frame resized to **960 x 540**. They were trained on frames rendered by libg 68 and run on
+onnxruntime-directml, so they work on NVIDIA and AMD GPUs.
 
 | file | what |
 | --- | --- |
@@ -43,7 +56,7 @@ On an RX 7900 XT with DirectML: det about 10 ms, seg_argmax about 4 ms. Our whol
 adapter) runs at 10 frames/s with p95 53 ms.
 
 ## Validation set (same frames our numbers above come from)
-On the [v6 release](https://github.com/mlgdoggynoob/showdown-vision-v6/releases/tag/v6): `showdown-v6-val-part*.zip`
+On the [v6 release](https://github.com/mlgdoggynoob/showdown-vision/releases/tag/v6): `showdown-v6-val-part*.zip`
 and `showdown-v6-val_mk-part*.zip` (stored zips, ~6.9 GB in all). Unzip every part into one folder:
 - `images/val/*.png` (16,969 frames, 960 x 540) + `labels/val/*.txt` (YOLO boxes, the 29 classes above) +
   `seg/val/*.png` (uint8 masks at 960 x 540, pixel = class id, names in `seg_names.txt`)
